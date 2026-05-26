@@ -1,14 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: "./",
   plugins: [react()],
-  optimizeDeps: {
-    include: ["react", "react-dom/client", "react-icons/fa", "react-icons/fi"],
-  },
+  optimizeDeps: command === "serve" ? { disabled: "dev" } : {},
   server: {
     fs: {
       strict: true,
     },
   },
-});
+}));
