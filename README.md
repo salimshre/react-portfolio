@@ -1,66 +1,42 @@
-# My Portfolio 🚀
+# Salim Shrestha Portfolio
 
-Welcome to my personal portfolio built using **React.js**!  
-This project showcases my work, skills, projects, and contact information in a sleek, responsive design.
+A clean, modern single-page portfolio for Salim Shrestha built with Vite, React 18, and TailwindCSS. The app displays seeded profile details and fetches public GitHub profile statistics and recently updated repositories.
 
-## ✨ Features
+## Features
 
-- ⚛️ Built with **React**
-- 🎨 Clean and responsive UI/UX
-- 🌙 Dark/Light mode toggle
-- 💼 Project showcase with live demo links
-- 📱 Mobile-friendly design
-- 📧 Contact form integration (EmailJS or similar)
+- Full-screen hero with animated role text
+- About, Skills, Projects, GitHub Stats, Contact, and Footer sections
+- Live GitHub data from `https://api.github.com/users/salimshre`
+- Skeleton loaders and graceful fallback data for GitHub API errors
+- Dark mode toggle persisted in `localStorage`
+- Smooth scrolling navigation with active section highlighting
+- Mobile-first responsive layout
 
-## 📁 Project Structure
+## Setup
 
-```
-my-portfolio/
-├── public/
-├── src/
-│   ├── assets/         # Images, icons, etc.
-│   ├── components/     # Reusable components
-│   ├── pages/          # Pages like Home, About, Projects, Contact
-│   ├── App.js
-│   └── index.js
-├── .gitignore
-├── package.json
-└── README.md
+```bash
+npm install
+npm run dev
 ```
 
-## 🛠️ Technologies Used
+Build for production:
 
-- React.js
-- JavaScript (ES6+)
-- CSS / SCSS / TailwindCSS (optional)
-- React Router
-- EmailJS / Formspree (for contact form)
-- Vite or Create React App (CRA)
+```bash
+npm run build
+```
 
-## 🚀 Getting Started
+Preview the production build:
 
-To run this project locally:
+```bash
+npm run preview
+```
 
-1. Clone the repository:
+## Optional GitHub Token
 
-   ```bash
-   git clone https://github.com/your-username/my-portfolio.git
-   ```
+GitHub's unauthenticated API has a low rate limit. To raise the limit, create a local `.env` file:
 
-2. Navigate to the project folder:
+```bash
+VITE_GITHUB_TOKEN=your_github_token_here
+```
 
-   ```bash
-   cd my-portfolio
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Run the development server:
-
-   ```bash
-   npm start
-   ```
+Do not commit `.env` files or real tokens.
