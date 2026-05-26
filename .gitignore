@@ -4,3 +4,7 @@ dist/
 .env.*
 !.env.example
 npm-debug.log*
+Documentation/*.aux
+Documentation/*.log
+Documentation/*.out
+Documentation/*.toc
