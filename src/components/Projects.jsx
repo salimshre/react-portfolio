@@ -22,6 +22,8 @@ export default function Projects({ repos, loading, error }) {
           </div>
           <a
             href="https://github.com/salimshre"
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 text-sm font-bold text-violet-700 hover:text-indigo-700 dark:text-violet-300"
           >
             <FiGithub /> View all on GitHub
@@ -55,6 +57,8 @@ export default function Projects({ repos, loading, error }) {
                     </span>
                     <a
                       href={repo.html_url}
+                      target="_blank"
+                      rel="noreferrer"
                       className="inline-flex items-center gap-2 text-sm font-bold text-violet-700 hover:text-indigo-700 dark:text-violet-300"
                     >
                       View <FiExternalLink />

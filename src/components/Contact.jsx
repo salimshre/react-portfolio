@@ -29,6 +29,8 @@ export default function Contact() {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={social.label}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:scale-105 hover:border-violet-300 hover:text-violet-700 dark:border-white/10 dark:bg-slate-950 dark:text-slate-200"
                 >

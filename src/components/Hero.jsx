@@ -9,18 +9,23 @@ export default function Hero({ user }) {
 
   useEffect(() => {
     const current = roles[roleIndex];
-    const timeout = setTimeout(() => {
+    let nextRoleTimeout;
+
+    const typingTimeout = setTimeout(() => {
       if (letters < current.length) {
         setLetters((value) => value + 1);
       } else {
-        setTimeout(() => {
+        nextRoleTimeout = setTimeout(() => {
           setLetters(0);
           setRoleIndex((value) => (value + 1) % roles.length);
         }, 900);
       }
     }, 90);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(typingTimeout);
+      clearTimeout(nextRoleTimeout);
+    };
   }, [letters, roleIndex]);
 
   return (
@@ -49,6 +54,8 @@ export default function Hero({ user }) {
             </a>
             <a
               href="https://www.ssanu.com.np/images/Salim-Shrestha-cv.pdf"
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-900 transition hover:scale-105 dark:border-white/10 dark:bg-slate-900 dark:text-white"
             >
               <FiDownload /> Download CV
