@@ -12,8 +12,13 @@ import { useGitHub } from "./hooks/useGitHub.js";
 const sections = ["hero", "about", "skills", "projects", "stats", "contact"];
 
 function getInitialTheme() {
-  if (localStorage.getItem("theme")) return localStorage.getItem("theme");
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  try {
+    const savedTheme = window.localStorage?.getItem("theme");
+    if (savedTheme === "dark" || savedTheme === "light") return savedTheme;
+    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  } catch {
+    return "light";
+  }
 }
 
 export default function App() {
@@ -23,7 +28,11 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
+    try {
+      window.localStorage?.setItem("theme", theme);
+    } catch {
+      // Browsers can block storage; the theme toggle should still work for the current page.
+    }
   }, [theme]);
 
   useEffect(() => {

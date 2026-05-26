@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const skills = [
   { name: "HTML", level: 90 },
   { name: "CSS", level: 60 },
@@ -7,6 +9,13 @@ const skills = [
 ];
 
 export default function Skills() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <section id="skills" className="py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -22,7 +31,7 @@ export default function Skills() {
               <div className="mt-4 h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                 <div
                   className="h-full rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 transition-all duration-1000"
-                  style={{ width: `${skill.level}%` }}
+                  style={{ width: ready ? `${skill.level}%` : "0%" }}
                 />
               </div>
             </div>
