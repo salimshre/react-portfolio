@@ -1,0 +1,285 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{titlesec}
+
+\definecolor{Accent}{HTML}{4F46E5}
+\definecolor{Muted}{HTML}{475569}
+\definecolor{CodeBg}{HTML}{F1F5F9}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Accent,
+  urlcolor=Accent,
+  citecolor=Accent,
+  pdftitle={Salim Shrestha Portfolio Documentation},
+  pdfauthor={Salim Shrestha}
+}
+
+\titleformat{\section}
+  {\Large\bfseries\color{Accent}}
+  {\thesection}
+  {0.7em}
+  {}
+
+\titleformat{\subsection}
+  {\large\bfseries}
+  {\thesubsection}
+  {0.7em}
+  {}
+
+\setlist[itemize]{leftmargin=1.5em}
+\setlist[enumerate]{leftmargin=1.5em}
+\renewcommand{\arraystretch}{1.25}
+
+\newcommand{\code}[1]{\colorbox{CodeBg}{\texttt{#1}}}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Huge\bfseries Salim Shrestha Portfolio\par}
+  \vspace{0.6cm}
+  {\Large React Portfolio Application Documentation\par}
+  \vspace{1.2cm}
+  {\large Vite + React 18 + TailwindCSS\par}
+  \vfill
+  \begin{tabular}{>{\bfseries}rl}
+    Owner: & Salim Shrestha \\
+    Role: & Web Developer / Computer Engineer \\
+    Location: & Kathmandu, Nepal \\
+    Repository: & \texttt{react-portfolio} \\
+    Document Date: & May 26, 2026 \\
+  \end{tabular}
+  \vfill
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Project Overview}
+
+The Salim Shrestha portfolio is a clean, modern single-page web application
+implemented with Vite, React 18, and TailwindCSS. It presents Salim's personal
+profile, technical skills, GitHub projects, GitHub public statistics, and
+contact links in a responsive portfolio interface.
+
+The app is designed as a client-side React application. It uses pre-seeded
+profile information for stable personal details and fetches live public GitHub
+data on first page load. If the GitHub API is unavailable, the application
+falls back to static data so that the portfolio remains usable.
+
+\section{Owner Details}
+
+\begin{longtable}{>{\bfseries}p{0.25\linewidth}p{0.65\linewidth}}
+Name & Salim Shrestha \\
+Title & Web Developer / Computer Engineer \\
+Location & Kathmandu, Nepal \\
+Email & \href{mailto:salim9shrestha@gmail.com}{salim9shrestha@gmail.com} \\
+Photo & \url{https://www.ssanu.com.np/images/salim.jpg} \\
+CV & \url{https://www.ssanu.com.np/images/Salim-Shrestha-cv.pdf} \\
+GitHub & \url{https://github.com/salimshre} \\
+LinkedIn & \url{https://www.linkedin.com/in/salimshrestha} \\
+Facebook & \url{https://www.facebook.com/salimshre} \\
+Instagram & \url{https://www.instagram.com/salimsshrestha/} \\
+YouTube & \url{https://www.youtube.com/c/technodynamic} \\
+\end{longtable}
+
+\section{Technology Stack}
+
+\begin{longtable}{>{\bfseries}p{0.25\linewidth}p{0.65\linewidth}}
+Frontend Library & React 18 \\
+Build Tool & Vite \\
+Styling & TailwindCSS \\
+Language & Plain JavaScript and JSX \\
+Icons & React Icons \\
+Data Fetching & Native \code{fetch} inside a custom React hook \\
+Package Manager & npm \\
+\end{longtable}
+
+\section{Repository Structure}
+
+\begin{verbatim}
+react-portfolio/
+  index.html
+  package.json
+  vite.config.js
+  tailwind.config.js
+  postcss.config.js
+  src/
+    main.jsx
+    App.jsx
+    index.css
+    components/
+      Navbar.jsx
+      Hero.jsx
+      About.jsx
+      Skills.jsx
+      Projects.jsx
+      GitHubStats.jsx
+      Contact.jsx
+      Footer.jsx
+    hooks/
+      useGitHub.js
+  Documentation/
+    portfolio_documentation.tex
+\end{verbatim}
+
+\section{Application Architecture}
+
+The application starts at \code{src/main.jsx}, where React mounts \code{App}
+into the \code{root} element defined in \code{index.html}. The \code{App}
+component coordinates global page behavior, including:
+
+\begin{itemize}
+  \item loading GitHub data through \code{useGitHub};
+  \item applying the persisted light or dark theme;
+  \item tracking the active page section for scroll-spy navigation;
+  \item rendering the page sections in the required single-page order.
+\end{itemize}
+
+\subsection{Component Responsibilities}
+
+\begin{longtable}{>{\bfseries}p{0.28\linewidth}p{0.62\linewidth}}
+\code{Navbar.jsx} & Fixed navigation bar, section links, active section highlight, and dark mode toggle. \\
+\code{Hero.jsx} & Full-screen hero with name, location, animated role text, avatar, hire button, and CV link. \\
+\code{About.jsx} & Short profile paragraph, professional title, graduation year context, and location badge. \\
+\code{Skills.jsx} & Skill list with animated progress bars. \\
+\code{Projects.jsx} & GitHub repository cards with language, stars, description, and external links. \\
+\code{GitHubStats.jsx} & Public repository, follower, and following counters. \\
+\code{Contact.jsx} & Email link and social profile icon links. \\
+\code{Footer.jsx} & Footer text required by the project prompt. \\
+\code{useGitHub.js} & Shared GitHub API fetch logic, loading state, error state, and fallback data. \\
+\end{longtable}
+
+\section{Data Flow}
+
+The custom hook \code{useGitHub} fetches data from the public GitHub API:
+
+\begin{itemize}
+  \item \url{https://api.github.com/users/salimshre}
+  \item \url{https://api.github.com/users/salimshre/repos?sort=updated&per_page=6}
+\end{itemize}
+
+The user endpoint provides avatar, biography, repository count, followers,
+and following count. The repository endpoint provides the six most recently
+updated repositories, including name, description, language, star count, and
+GitHub URL.
+
+The hook initializes the UI with fallback values and then replaces them with
+live data when the API request succeeds. If the request fails, the app displays
+the fallback profile and project data and shows an explanatory message in the
+Projects section.
+
+\section{User Interface Features}
+
+\begin{itemize}
+  \item Single-page layout with smooth scrolling.
+  \item Fixed navigation with active section highlighting.
+  \item Full-screen hero section with animated role typewriter text.
+  \item Responsive design for mobile, tablet, and desktop screens.
+  \item Dark mode toggle persisted in \code{localStorage}.
+  \item Skeleton loading cards while GitHub data is being fetched.
+  \item Graceful GitHub API fallback behavior.
+  \item Contact section with email and social links.
+\end{itemize}
+
+\section{Build and Run Instructions}
+
+\subsection{Install Dependencies}
+
+\begin{verbatim}
+npm install
+\end{verbatim}
+
+\subsection{Run Development Server}
+
+\begin{verbatim}
+npm run dev
+\end{verbatim}
+
+The local Vite development server is normally available at:
+
+\begin{verbatim}
+http://127.0.0.1:5173
+\end{verbatim}
+
+\subsection{Build Production Files}
+
+\begin{verbatim}
+npm run build
+\end{verbatim}
+
+The production output is generated in the \code{dist/} directory.
+
+\subsection{Preview Production Build}
+
+\begin{verbatim}
+npm run preview
+\end{verbatim}
+
+\section{Environment Configuration}
+
+The application can optionally use a GitHub token to raise GitHub API rate
+limits. Create a local \code{.env} file and define:
+
+\begin{verbatim}
+VITE_GITHUB_TOKEN=your_github_token_here
+\end{verbatim}
+
+This file should remain local and must not be committed to version control.
+
+\section{Blank Page Issue and Resolution}
+
+During development, the app displayed a blank white page while the Vite server
+was running. The cause was a Vite configuration setting that disabled
+dependency optimization in development:
+
+\begin{verbatim}
+optimizeDeps: command === "serve" ? { disabled: "dev" } : {}
+\end{verbatim}
+
+With dependency optimization disabled, the browser received raw CommonJS React
+modules such as \code{module.exports}, which are not valid in the browser's
+native ES module runtime. This prevented React from mounting and resulted in a
+blank page.
+
+The fix was to remove the custom \code{optimizeDeps} override from
+\code{vite.config.js}. Vite now pre-bundles React dependencies correctly and
+serves browser-compatible modules from \code{/node\_modules/.vite/deps/}.
+
+\section{Prompt Compliance Summary}
+
+\begin{longtable}{>{\bfseries}p{0.42\linewidth}p{0.18\linewidth}p{0.30\linewidth}}
+Requirement & Status & Notes \\
+Vite + React 18 & Complete & Implemented with functional components. \\
+TailwindCSS styling & Complete & \code{src/index.css} contains Tailwind directives only. \\
+GitHub public API data & Complete & User and repository endpoints are fetched. \\
+Fallback on GitHub errors & Complete & Static user and project data are used on failure. \\
+Skeleton loaders & Complete & Projects and stats display loading placeholders. \\
+Single-page sections & Complete & Hero, About, Skills, Projects, GitHub Stats, Contact, and Footer are present. \\
+Dark mode toggle & Complete & Theme is persisted with guarded \code{localStorage} usage. \\
+Smooth scroll-spy navigation & Complete & Intersection Observer tracks active sections. \\
+Responsive layout & Complete & Tailwind mobile-first classes are used throughout. \\
+Footer text & Complete & Footer matches the required 2025 wording. \\
+README setup notes & Complete & Includes setup, build, preview, and optional token notes. \\
+\end{longtable}
+
+\section{Conclusion}
+
+The repository implements the requested portfolio application with the expected
+React component structure, GitHub API integration, fallback handling, responsive
+TailwindCSS layout, dark mode, and documentation. The development server blank
+page issue was resolved by restoring Vite's default dependency optimization
+behavior.
+
+\end{document}
